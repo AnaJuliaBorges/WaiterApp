@@ -1,10 +1,17 @@
-import { Text } from "../components/Text";
-import { Container } from "./styles";
+import { Header } from "../components/Header";
+import { CategoriesContainer, Container, Footer, FooterContainer, MenuContainer } from "./styles";
 
 export function Main() {
   return (
-    <Container>
-      <Text>Main renderizou</Text>
-    </Container>
+    <>
+      <Container>
+        <Header />
+        <CategoriesContainer></CategoriesContainer>
+        <MenuContainer></MenuContainer>
+      </Container>
+      <Footer>
+        <FooterContainer></FooterContainer>
+      </Footer>
+    </>
   )
 }
