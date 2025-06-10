@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { StatusBar } from 'react-native'
-import { isAndroid } from "../utils";
+import { isAndroid } from "../utils/isAndroid";
 
 export const Container = styled.SafeAreaView`
   margin-top: ${isAndroid ? StatusBar.currentHeight : 0}px;
