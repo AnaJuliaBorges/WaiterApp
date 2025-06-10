@@ -8,9 +8,13 @@ import { ProductModal } from "../ProductModal";
 import { useState } from "react";
 import { Product } from "../../types/Product";
 
-export function Menu() {
+interface MenuProps {
+  onAddToCart: (product: Product) => void
+}
+
+export function Menu({onAddToCart} : MenuProps) {
   const [isProductModalVisible, setIsProductModalVisible] = useState(false)
-   const [selectedProduct, setSelectedProduct] = useState<null | Product>(null)
+  const [selectedProduct, setSelectedProduct] = useState<null | Product>(null)
 
   function handleProductDetails(product: Product) {
     setIsProductModalVisible(true)
@@ -37,7 +41,7 @@ export function Menu() {
               <Text size={14} weight="600">{formatCurrency(product.price)}</Text>
             </ProductDetails>
 
-            <AddToCartButton>
+            <AddToCartButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCartButton>
           </ProductContainer>
@@ -48,6 +52,7 @@ export function Menu() {
         visible={isProductModalVisible}
         onClose={() => setIsProductModalVisible(false)}
         product={selectedProduct}
+        onAddToCart={onAddToCart}
       />
     </>
 
