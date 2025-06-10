@@ -1,5 +1,4 @@
-import { FlatList, Touchable, TouchableOpacity } from "react-native";
-import { CartItem } from "../../types/Cartitem";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Actions, ItemContainer, ProductContainer, Image, QuantityContainer, ProductDetails, Summary, TotalContainer } from "./styles";
 import { Text } from "../Text";
 import { formatCurrency } from "../../utils/formatCurrency";
@@ -7,18 +6,34 @@ import { PlusCircle } from "../Icons/PlusCircle";
 import { MinusCircle } from "../Icons/MinusCircle";
 import { Button } from "../Button";
 import { Product } from "../../types/Product";
+import { CartItem } from "../../types/CartItem";
+import { OrderConfirmedModal } from "../OrderConfirmedModal";
+import { useState } from "react";
 
 interface CartProps {
   cartItems: CartItem[];
   onAdd: (product: Product) => void;
   onDecrement: (product: Product) => void;
+  onConfirmOrder: () => void;
 }
 
-export function Cart({cartItems, onAdd, onDecrement} : CartProps) {
+export function Cart({cartItems, onAdd, onDecrement, onConfirmOrder} : CartProps) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isOrderConfirmedModal, setIsOrderConfirmedModal] = useState(false);
+
   const isCartEmpty = cartItems.length === 0
   const total = cartItems.reduce((acc, cartItem) => {
     return acc + cartItem.quantity * cartItem.product.price;
   }, 0)
+
+  function handleConfirmOrder () {
+    setIsOrderConfirmedModal(true)
+  }
+
+  function handleOk() {
+    onConfirmOrder();
+    setIsOrderConfirmedModal(false)
+  }
 
   return (
     <>
@@ -74,12 +89,18 @@ export function Cart({cartItems, onAdd, onDecrement} : CartProps) {
         </TotalContainer>
 
         <Button
-          onPress={() => alert('confirmar pedido')}
+          onPress={handleConfirmOrder}
           disabled={isCartEmpty}
+          loading={isLoading}
         >
           Confirmar pedido
         </Button>
       </Summary>
+
+      <OrderConfirmedModal
+        visible={isOrderConfirmedModal}
+        onOk={handleOk}
+      />
     </>
   )
 }
