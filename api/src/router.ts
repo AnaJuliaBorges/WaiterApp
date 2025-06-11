@@ -4,6 +4,7 @@ import { listCategories } from "./app/useCases/categories/listCategories";
 import { createCategories } from "./app/useCases/categories/createCategory";
 import { listProducts } from "./app/useCases/products/listProducts";
 import { createProduct } from "./app/useCases/products/createProduct";
+import { removeProduct } from "./app/useCases/products/removeProduct";
 import { upload } from "./middlewares/uploadImage";
 import { listProductsByCategory } from "./app/useCases/categories/listProductsByCategory";
 import { listOrders } from "./app/useCases/orders/listOrders";
@@ -27,6 +28,9 @@ router.get('/products', listProducts);
 
 // Create product
 router.post('/products', upload.single('image'), createProduct);
+
+//UpdateProduct
+router.delete('/products/:productId', removeProduct);
 
 // List orders
 router.get('/orders', listOrders);
