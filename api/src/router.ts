@@ -11,6 +11,7 @@ import { listOrders } from "./app/useCases/orders/listOrders";
 import { createOrder } from "./app/useCases/orders/createorder";
 import { changeOrderStatus } from "./app/useCases/orders/changeOrderStatus";
 import { cancelOrder } from "./app/useCases/orders/deleteOrder";
+import { editCategories } from "./app/useCases/categories/editCategories";
 
 export const router = Router();
 
@@ -19,6 +20,9 @@ router.get('/categories', listCategories);
 
 // Create category
 router.post('/categories', createCategories);
+
+// Edit category
+router.patch('/categories/:categoryId', editCategories)
 
 // Get products by category
 router.get('/categories/:categoryId/products', listProductsByCategory);
