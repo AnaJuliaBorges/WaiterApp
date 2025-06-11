@@ -8,9 +8,29 @@ interface OrderModalProps {
   visible: boolean;
   order: Order | null;
   onClose: () => void;
+  onCancelOrder: () => Promise<void>;
+  onChangeOrderStatus: () => void;
+  isLoading: boolean;
+  hideActionButtons?: boolean;
+  textPrimaryActionButton?: string;
+  iconPrimaryActionButton?: string;
 }
 
-export function OrderModal ({visible, order, onClose} : OrderModalProps) {
+const defaultProps : Partial<OrderModalProps> = {
+  hideActionButtons: false,
+};
+
+export function OrderModal ({
+  visible,
+  order,
+  onClose,
+  onCancelOrder,
+  onChangeOrderStatus,
+  isLoading,
+  hideActionButtons,
+  textPrimaryActionButton,
+  iconPrimaryActionButton
+} : OrderModalProps) {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if(event.key === 'Escape') onClose();
@@ -98,18 +118,32 @@ export function OrderModal ({visible, order, onClose} : OrderModalProps) {
           </Total>
         </OrderDetails>
 
-        <Actions>
-          <button type="button" className="primary">
-            <span>👩🏽‍🍳</span>
-            <strong>Iniciar Produção</strong>
-          </button>
+        {!hideActionButtons && (
+          <Actions>
+            <button
+              type="button"
+              className="primary"
+              disabled={isLoading}
+              onClick={onChangeOrderStatus}
+            >
+                <span>{iconPrimaryActionButton}</span>
+                <strong>{textPrimaryActionButton}</strong>
+            </button>
 
-          <button type="button" className="secondary">
-            <span>Cancelar pedido</span>
-          </button>
-        </Actions>
-
+            <button
+              type="button"
+              className="secondary"
+              onClick={onCancelOrder}
+              disabled={isLoading}
+            >
+              <span>Cancelar pedido</span>
+            </button>
+          </Actions>
+        )}
       </ModalBody>
     </Overlay>
   )
 }
+
+OrderModal.defaultProps = defaultProps;
+

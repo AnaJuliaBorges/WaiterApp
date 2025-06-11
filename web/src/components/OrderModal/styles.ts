@@ -119,6 +119,11 @@ export const StatusContainer = styled.div `
     margin-top: 32px;
     gap: 8px;
 
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .primary {
       background: #333;
       border-radius: 48px;
