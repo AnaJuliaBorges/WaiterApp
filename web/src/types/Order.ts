@@ -1,10 +1,11 @@
 export interface Order {
   _id: string;
   table: string;
-  status: 'WAITING' | 'IN_PRODUCTION' | 'DONE'; // Adapte conforme os status possíveis
+  status: StatusType;
   products: OrderProduct[];
 }
 
+export type StatusType = 'WAITING' | 'IN_PRODUCTION' | 'DONE';
 interface Product {
   name: string;
   imagePath: string;
