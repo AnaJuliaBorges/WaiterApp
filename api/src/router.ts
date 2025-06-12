@@ -8,10 +8,10 @@ import { removeProduct } from "./app/useCases/products/removeProduct";
 import { upload } from "./middlewares/uploadImage";
 import { listProductsByCategory } from "./app/useCases/categories/listProductsByCategory";
 import { listOrders } from "./app/useCases/orders/listOrders";
-import { createOrder } from "./app/useCases/orders/createorder";
 import { changeOrderStatus } from "./app/useCases/orders/changeOrderStatus";
 import { cancelOrder } from "./app/useCases/orders/deleteOrder";
 import { editCategories } from "./app/useCases/categories/editCategories";
+import { createOrder } from "./app/useCases/orders/createOrder";
 
 export const router = Router();
 
