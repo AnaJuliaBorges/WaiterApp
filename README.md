@@ -6,11 +6,11 @@
 
 ## 🚀 Tecnologias Utilizadas
 
-* **Backend**: Node.js + Express
+* **Backend**: Node.js + Express + Typescript
 * **Banco de Dados**: MongoDB (via Docker)
 * **Comunicação em tempo real**: Socket.IO
-* **Frontend Web**: React (com Vite)
-* **Frontend Mobile**: React Native + Expo
+* **Frontend Web**: React (com Vite) + Typescript
+* **Frontend Mobile**: React Native + Expo + Typescript
 * **Estilização**: Styled-components
 
 ---
