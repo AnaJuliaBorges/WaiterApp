@@ -13,8 +13,6 @@
 * **Mobile Frontend**: React Native + Expo + Typescript
 * **Stylization**: Styled-components
 
----
-
 ## 📁 Project Structure
 
 ```
@@ -23,8 +21,6 @@ WaiterApp/
 ├── web/  # Web application with React
 └── app/  # Mobile Application with React Native
 ```
-
----
 
 ## ⚙️ Installation and Execution
 
@@ -63,8 +59,6 @@ yarn start
 ```
 
 Scan the QR code with the Expo Go app
-
----
 
 ## 🔹 Features
 
