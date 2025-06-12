@@ -7,11 +7,11 @@
 ## 🚀 Technologies Used
 
 * **Backend**: Node.js + Express + Typescript
-* **Banco de Dados**: MongoDB (via Docker)
-* **Comunicação em tempo real**: Socket.IO
-* **Frontend Web**: React (com Vite) + Typescript
-* **Frontend Mobile**: React Native + Expo + Typescript
-* **Estilização**: Styled-components
+* **Database**: MongoDB (via Docker)
+* **Real-time communication**: Socket.IO
+* **Web Frontend**: React (com Vite) + Typescript
+* **Mobile Frontend**: React Native + Expo + Typescript
+* **Stylization**: Styled-components
 
 ---
 
@@ -19,9 +19,9 @@
 
 ```
 WaiterApp/
-├── api/         # Backend with Node and Express
-├── frontend/    # Web application with React
-└── mobile/      # Mobile Application with React Native
+├── api/  # Backend with Node and Express
+├── web/  # Web application with React
+└── app/  # Mobile Application with React Native
 ```
 
 ---
@@ -47,7 +47,7 @@ The server will be available at `http://localhost:3001`
 ### 3. Start the Web Frontend
 
 ```bash
-cd frontend
+cd web
 yarn install
 yarn dev
 ```
@@ -57,7 +57,7 @@ Access `http://localhost:5173`
 ### 4. Start the Mobile App (Expo)
 
 ```bash
-cd mobile
+cd app
 yarn install
 yarn start
 ```
