@@ -3,9 +3,20 @@ import { OrdersBoard } from "../OrdersBoard";
 import { Container } from "./styles";
 import { type Order } from "../../types/Order";
 import { api } from "../../utils/api";
+import socketIo from 'socket.io-client';
 
 export function Orders () {
   const [orders, setOrders] = useState<Order[]>([])
+
+  useEffect(() => {
+    const socket = socketIo('http://localhost:3001', {
+      transports: ['websocket'], //polling?
+    });
+
+    socket.on('orders@new', (order) => {
+      setOrders(prevState => prevState.concat(order));
+    })
+  }, [])
 
   useEffect(() => {
     api.get('/orders').then(({data}) => {
@@ -24,9 +35,9 @@ export function Orders () {
   }
 
   function handleOrderStatusChange(orderId : string, status: Order['status']) {
-  setOrders((prevState) => prevState.map((order) => (
-    order._id === orderId ? { ...order, status} : order
-  )))
+    setOrders((prevState) => prevState.map((order) => (
+      order._id === orderId ? { ...order, status} : order
+    )))
   }
 
   return (
